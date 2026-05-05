@@ -60,14 +60,14 @@ export const ScreenManager: React.FC = () => {
         )}
       </AnimatePresence>
 
-      {/* Global Footer Branding (Only on Trivia) */}
+      {/* Global Footer Branding (Only on Trivia, hidden on mobile) */}
       {currentScreen === 'TRIVIA' && (
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none"
+          className="hidden md:block fixed bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none"
         >
           <div className="bg-white/85 backdrop-blur-2xl px-10 py-3 rounded-[2rem] shadow-[0_0_50px_rgba(255,255,255,0.15)] border border-white/50 flex items-center justify-center">
             <img 
@@ -87,14 +87,14 @@ export const ScreenManager: React.FC = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
-            className="fixed inset-0 z-[100] bg-black flex items-center justify-center"
+            className="fixed inset-0 z-[100] bg-black flex items-center justify-center p-4 md:p-0"
           >
             <video 
               src="/0505.mp4" 
               autoPlay 
               muted 
               playsInline
-              className="w-full h-full object-cover"
+              className="w-full max-w-2xl h-full md:h-full object-contain md:object-cover"
               onEnded={() => {
                 setShowTransition(false);
                 setParticipant(null);
