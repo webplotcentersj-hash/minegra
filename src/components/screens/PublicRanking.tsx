@@ -15,7 +15,7 @@ export const PublicRanking: React.FC = () => {
         .select('*')
         .order('score', { ascending: false })
         .order('time_seconds', { ascending: true })
-        .limit(10);
+        .limit(7);
 
       if (error) throw error;
       
@@ -28,9 +28,11 @@ export const PublicRanking: React.FC = () => {
       console.error('Error fetching ranking:', error);
       // Fallback for demo when Supabase is not configured
       setTopPlayers([
-          { name: "Lionel Messi", score: 5000, time_seconds: 45, email: "", phone: "" },
-          { name: "Dibu Martínez", score: 4800, time_seconds: 48, email: "", phone: "" },
-          { name: "Ángel Di María", score: 4500, time_seconds: 52, email: "", phone: "" }
+          { name: "Lionel Messi", score: 5000, time_seconds: 45, email: "", phone: "", company: "Inter Miami" },
+          { name: "Dibu Martínez", score: 4800, time_seconds: 48, email: "", phone: "", company: "Aston Villa" },
+          { name: "Ángel Di María", score: 4500, time_seconds: 52, email: "", phone: "", company: "Benfica" },
+          { name: "Julián Álvarez", score: 4200, time_seconds: 55, email: "", phone: "", company: "Man City" },
+          { name: "Enzo Fernández", score: 4000, time_seconds: 58, email: "", phone: "", company: "Chelsea" }
       ]);
     } finally {
       setIsLoading(false);
@@ -59,11 +61,15 @@ export const PublicRanking: React.FC = () => {
         <div className="absolute bottom-[-10%] right-[10%] w-[50%] h-[50%] rounded-full bg-world-cup-blue/30 blur-[120px]" />
       </div>
 
-      {/* Logo Corporativo */}
+      {/* Logo Corporativo Animado */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="mt-4 md:mt-8 mb-2 bg-white/90 backdrop-blur-md px-8 py-3 rounded-full shadow-xl border border-white/40 z-10"
+        animate={{ opacity: 1, y: [0, -8, 0] }}
+        transition={{ 
+          opacity: { duration: 0.5 },
+          y: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+        }}
+        className="mt-4 md:mt-8 mb-2 bg-white/90 backdrop-blur-md px-8 py-3 rounded-full shadow-[0_0_30px_rgba(255,255,255,0.2)] border border-white/40 z-10"
       >
         <img 
           src="/greenworking-soluciones-tecnologicas-logo-green-vf-1.png" 

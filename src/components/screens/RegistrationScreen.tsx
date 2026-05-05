@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { User, Mail, Phone, ArrowRight } from 'lucide-react';
+import { User, Mail, Phone, Building, ArrowRight } from 'lucide-react';
 import type { Participant } from '../../lib/supabase';
 
 interface Props {
@@ -8,11 +8,11 @@ interface Props {
 }
 
 export const RegistrationScreen: React.FC<Props> = ({ onRegister }) => {
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', company: '' });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (formData.name.trim() && formData.email.trim()) {
+    if (formData.name.trim() && formData.email.trim() && formData.company.trim()) {
       onRegister(formData);
     }
   };
@@ -62,6 +62,19 @@ export const RegistrationScreen: React.FC<Props> = ({ onRegister }) => {
               placeholder="Nombre completo" 
               value={formData.name}
               onChange={(e) => setFormData({...formData, name: e.target.value})}
+              className="glass-input w-full rounded-xl md:rounded-2xl py-3 pl-14 pr-4 md:py-4 md:pl-16 md:pr-6 text-white placeholder-blue-300/50 focus:outline-none focus:ring-2 focus:ring-world-cup-gold focus:border-transparent text-base md:text-xl font-medium"
+            />
+          </div>
+          <div className="relative group">
+            <div className="absolute left-3 md:left-4 top-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 bg-white/10 rounded-lg md:rounded-xl flex items-center justify-center border border-white/10 group-focus-within:border-world-cup-gold/50 group-focus-within:bg-world-cup-gold/20 transition-all">
+              <Building className="text-blue-200 group-focus-within:text-world-cup-gold transition-colors w-4 h-4 md:w-5 md:h-5" />
+            </div>
+            <input 
+              type="text" 
+              required
+              placeholder="Empresa o Institución" 
+              value={formData.company}
+              onChange={(e) => setFormData({...formData, company: e.target.value})}
               className="glass-input w-full rounded-xl md:rounded-2xl py-3 pl-14 pr-4 md:py-4 md:pl-16 md:pr-6 text-white placeholder-blue-300/50 focus:outline-none focus:ring-2 focus:ring-world-cup-gold focus:border-transparent text-base md:text-xl font-medium"
             />
           </div>

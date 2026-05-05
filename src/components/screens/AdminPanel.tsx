@@ -26,7 +26,8 @@ export const AdminPanel: React.FC = () => {
       const { data, error } = await supabase
         .from('participants')
         .select('*')
-        .order('created_at', { ascending: false });
+        .order('score', { ascending: false })
+        .order('time_seconds', { ascending: true });
 
       if (error) throw error;
       
@@ -38,8 +39,8 @@ export const AdminPanel: React.FC = () => {
       // Fallback para pruebas si no hay Supabase
       if (participants.length === 0) {
         setParticipants([
-          { id: '1', name: "Juan Pérez", email: "juan@ejemplo.com", phone: "+541122334455", score: 4500, time_seconds: 52, created_at: new Date().toISOString() },
-          { id: '2', name: "María Gómez", email: "maria@ejemplo.com", phone: "+5491133445566", score: 3800, time_seconds: 60, created_at: new Date(Date.now() - 3600000).toISOString() }
+          { id: '1', name: "Juan Pérez", email: "juan@ejemplo.com", phone: "+541122334455", company: "Empresa A", score: 4500, time_seconds: 52, created_at: new Date().toISOString() },
+          { id: '2', name: "María Gómez", email: "maria@ejemplo.com", phone: "+5491133445566", company: "Institución B", score: 3800, time_seconds: 60, created_at: new Date(Date.now() - 3600000).toISOString() }
         ]);
       }
     } finally {
@@ -51,11 +52,12 @@ export const AdminPanel: React.FC = () => {
     if (participants.length === 0) return;
 
     // Headers
-    const headers = ['Nombre', 'Email', 'Teléfono', 'Puntaje', 'Tiempo (s)', 'Fecha y Hora'];
+    const headers = ['Nombre', 'Empresa/Institución', 'Email', 'Teléfono', 'Puntaje', 'Tiempo (s)', 'Fecha y Hora'];
     
     // Rows
     const rows = participants.map(p => [
       p.name,
+      p.company || '-',
       p.email,
       p.phone,
       p.score?.toString() || '0',
@@ -143,30 +145,47 @@ export const AdminPanel: React.FC = () => {
           <table className="w-full text-left border-collapse whitespace-nowrap md:whitespace-normal">
             <thead>
               <tr className="bg-white/10 border-b border-white/20">
-                <th className="p-4 font-bold text-blue-200">Fecha y Hora</th>
+                <th className="p-4 font-bold text-blue-200">Posición</th>
                 <th className="p-4 font-bold text-blue-200">Nombre</th>
+                <th className="p-4 font-bold text-blue-200">Empresa</th>
                 <th className="p-4 font-bold text-blue-200">Email</th>
                 <th className="p-4 font-bold text-blue-200">Teléfono</th>
                 <th className="p-4 font-bold text-blue-200 text-right">Puntaje</th>
                 <th className="p-4 font-bold text-blue-200 text-right">Tiempo</th>
+                <th className="p-4 font-bold text-blue-200">Fecha</th>
               </tr>
             </thead>
             <tbody>
-              {participants.map((p, i) => (
-                <tr key={p.id || i} className="border-b border-white/5 hover:bg-white/5 transition-colors">
-                  <td className="p-4 text-gray-300">
-                    {p.created_at ? new Date(p.created_at).toLocaleString() : '-'}
-                  </td>
-                  <td className="p-4 font-medium text-white">{p.name}</td>
-                  <td className="p-4 text-gray-300">{p.email}</td>
-                  <td className="p-4 text-gray-300">{p.phone}</td>
-                  <td className="p-4 font-bold text-world-cup-gold text-right">{p.score}</td>
-                  <td className="p-4 text-gray-300 text-right">{p.time_seconds}s</td>
-                </tr>
-              ))}
+              {participants.map((p, i) => {
+                const phoneClean = p.phone.replace(/[^0-9]/g, '');
+                const waLink = phoneClean ? `https://wa.me/${phoneClean}` : null;
+                return (
+                  <tr key={p.id || i} className="border-b border-white/5 hover:bg-white/5 transition-colors">
+                    <td className="p-4 text-world-cup-gold font-bold">#{i + 1}</td>
+                    <td className="p-4 font-medium text-white">{p.name}</td>
+                    <td className="p-4 text-gray-300">{p.company || '-'}</td>
+                    <td className="p-4 text-gray-300">{p.email}</td>
+                    <td className="p-4 text-gray-300">
+                      <div className="flex items-center gap-2">
+                        {p.phone}
+                        {waLink && (
+                          <a href={waLink} target="_blank" rel="noreferrer" className="text-green-400 hover:text-green-300 transition-colors" title="Abrir en WhatsApp">
+                            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="css-i6dzq1"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                          </a>
+                        )}
+                      </div>
+                    </td>
+                    <td className="p-4 font-bold text-world-cup-gold text-right">{p.score}</td>
+                    <td className="p-4 text-gray-300 text-right">{p.time_seconds}s</td>
+                    <td className="p-4 text-gray-400 text-sm">
+                      {p.created_at ? new Date(p.created_at).toLocaleDateString() : '-'}
+                    </td>
+                  </tr>
+                );
+              })}
               {participants.length === 0 && !isLoading && (
                 <tr>
-                  <td colSpan={6} className="p-8 text-center text-gray-400">
+                  <td colSpan={8} className="p-8 text-center text-gray-400">
                     No hay participantes registrados todavía.
                   </td>
                 </tr>
@@ -176,7 +195,7 @@ export const AdminPanel: React.FC = () => {
         </div>
         <div className="bg-black/40 p-4 border-t border-white/10 text-gray-400 text-sm flex justify-between">
           <span>Total de leads: <strong className="text-white">{participants.length}</strong></span>
-          <span>Mostrando registros ordenados por fecha de registro (más recientes primero)</span>
+          <span>Mostrando registros ordenados por puntuación (mejores primero)</span>
         </div>
       </div>
     </div>

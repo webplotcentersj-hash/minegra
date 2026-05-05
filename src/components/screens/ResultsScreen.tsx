@@ -51,6 +51,7 @@ export const ResultsScreen: React.FC<Props> = ({ participant, score, timeTaken, 
               name: participant.name,
               email: participant.email,
               phone: participant.phone || '',
+              company: participant.company || '',
               score: score,
               time_seconds: timeTaken
             }
