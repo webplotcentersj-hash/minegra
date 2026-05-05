@@ -42,9 +42,24 @@ export const PublicRanking: React.FC = () => {
   useEffect(() => {
     fetchRanking();
     
-    // Configurar recarga cada 5 segundos
-    const interval = setInterval(fetchRanking, 5000);
-    return () => clearInterval(interval);
+    // Suscripción en tiempo real a Supabase
+    const channel = supabase.channel('custom-all-channel')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'participants' },
+        () => {
+          fetchRanking();
+        }
+      )
+      .subscribe();
+
+    // Fallback polling de seguridad por si falla el realtime
+    const interval = setInterval(fetchRanking, 10000);
+    
+    return () => {
+      clearInterval(interval);
+      supabase.removeChannel(channel);
+    };
   }, []);
 
   const podiumOrder = [
@@ -54,34 +69,23 @@ export const PublicRanking: React.FC = () => {
   ];
 
   return (
-    <div className="w-full min-h-screen p-4 sm:p-8 flex flex-col items-center overflow-x-hidden">
+    <div className="w-full min-h-screen p-4 sm:p-8 pb-32 flex flex-col items-center overflow-x-hidden relative">
       {/* Elementos decorativos */}
       <div className="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
         <div className="absolute top-[-20%] left-[20%] w-[40%] h-[40%] rounded-full bg-world-cup-gold/10 blur-[120px]" />
         <div className="absolute bottom-[-10%] right-[10%] w-[50%] h-[50%] rounded-full bg-world-cup-blue/30 blur-[120px]" />
       </div>
 
-      {/* Logo Corporativo Animado */}
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: [0, -8, 0] }}
-        transition={{ 
-          opacity: { duration: 0.5 },
-          y: { duration: 4, repeat: Infinity, ease: "easeInOut" }
-        }}
-        className="mt-4 md:mt-8 mb-2 bg-white/90 backdrop-blur-md px-8 py-3 rounded-full shadow-[0_0_30px_rgba(255,255,255,0.2)] border border-white/40 z-10"
-      >
-        <img 
-          src="/greenworking-soluciones-tecnologicas-logo-green-vf-1.png" 
-          alt="Greenworking Logo" 
-          className="h-6 md:h-10 object-contain"
-        />
-      </motion.div>
+      {/* Indicador EN VIVO */}
+      <div className="absolute top-6 right-6 md:top-8 md:right-10 flex items-center gap-2 bg-black/40 backdrop-blur-md px-4 py-2 rounded-full border border-red-500/30">
+        <div className="w-3 h-3 rounded-full bg-red-500 animate-pulse shadow-[0_0_10px_rgba(239,68,68,0.8)]"></div>
+        <span className="text-red-500 font-bold tracking-widest text-sm md:text-base">EN VIVO</span>
+      </div>
 
       <motion.div 
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className="flex items-center justify-center gap-2 md:gap-4 mb-10 md:mb-12 mt-2 md:mt-4 w-full z-10"
+        className="flex items-center justify-center gap-2 md:gap-4 mb-10 md:mb-12 mt-8 md:mt-12 w-full z-10"
       >
         <Trophy className="text-world-cup-gold gold-glow w-10 h-10 md:w-16 md:h-16 flex-shrink-0" />
         <h1 className="text-3xl sm:text-4xl md:text-6xl font-black text-glow text-center tracking-tight">TOP JUGADORES</h1>
@@ -171,6 +175,18 @@ export const PublicRanking: React.FC = () => {
           )}
         </div>
       )}
+
+      {/* Logo Corporativo Fijo en el Footer */}
+      <div className="fixed bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
+        <div className="bg-white/80 backdrop-blur-xl px-12 py-4 md:px-16 md:py-6 rounded-full shadow-[0_0_40px_rgba(255,255,255,0.2)] border border-white/50 flex items-center justify-center">
+          <img 
+            src="/greenworking-soluciones-tecnologicas-logo-green-vf-1.png" 
+            alt="Greenworking Logo" 
+            className="h-10 md:h-20 object-contain drop-shadow-md saturate-150"
+          />
+        </div>
+      </div>
+
     </div>
   );
 };
