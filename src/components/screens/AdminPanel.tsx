@@ -113,24 +113,24 @@ export const AdminPanel: React.FC = () => {
   }
 
   return (
-    <div className="w-full min-h-screen p-8 flex flex-col">
-      <div className="flex justify-between items-center mb-8 bg-black/30 p-6 rounded-2xl border border-white/10 backdrop-blur-md">
-        <div className="flex items-center gap-4">
-          <Database size={32} className="text-world-cup-gold" />
-          <h1 className="text-3xl font-bold text-white text-glow">Panel de Administración - Leads</h1>
+    <div className="w-full min-h-screen p-4 md:p-8 flex flex-col">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6 md:mb-8 bg-black/30 p-4 md:p-6 rounded-2xl border border-white/10 backdrop-blur-md">
+        <div className="flex items-center gap-3 md:gap-4">
+          <Database className="text-world-cup-gold w-8 h-8 md:w-10 md:h-10" />
+          <h1 className="text-xl md:text-3xl font-bold text-white text-glow">Panel de Administración - Leads</h1>
         </div>
-        <div className="flex gap-4">
+        <div className="flex flex-col sm:flex-row gap-3 md:gap-4 w-full md:w-auto">
           <button 
             onClick={fetchData}
             disabled={isLoading}
-            className="flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white px-6 py-3 rounded-xl transition-colors disabled:opacity-50"
+            className="flex flex-1 sm:flex-none justify-center items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white px-4 md:px-6 py-3 rounded-xl transition-colors disabled:opacity-50"
           >
             <RefreshCcw size={20} className={isLoading ? "animate-spin" : ""} />
             Actualizar
           </button>
           <button 
             onClick={downloadCSV}
-            className="flex items-center gap-2 bg-world-cup-green text-white font-bold px-6 py-3 rounded-xl hover:bg-emerald-600 transition-colors shadow-lg"
+            className="flex flex-1 sm:flex-none justify-center items-center gap-2 bg-world-cup-green text-white font-bold px-4 md:px-6 py-3 rounded-xl hover:bg-emerald-600 transition-colors shadow-lg"
           >
             <Download size={20} />
             Exportar CSV
@@ -140,7 +140,7 @@ export const AdminPanel: React.FC = () => {
 
       <div className="glass-panel rounded-2xl overflow-hidden flex-1 flex flex-col">
         <div className="overflow-x-auto flex-1">
-          <table className="w-full text-left border-collapse">
+          <table className="w-full text-left border-collapse whitespace-nowrap md:whitespace-normal">
             <thead>
               <tr className="bg-white/10 border-b border-white/20">
                 <th className="p-4 font-bold text-blue-200">Fecha y Hora</th>
