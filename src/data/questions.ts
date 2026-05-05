@@ -1266,4 +1266,655 @@ export const questions: Question[] = [
     "difficulty": "medium",
     "category": "Mundial"
   }
+,
+  {
+  "id": 106,
+  "question": "¿Qué selección ganó el Mundial 1938?",
+  "options": [
+    "Italia",
+    "Hungría",
+    "Brasil",
+    "Francia"
+  ],
+  "correctAnswer": 0,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 107,
+  "question": "¿Quién fue campeón del Mundial 1954?",
+  "options": [
+    "Hungría",
+    "Alemania Occidental",
+    "Brasil",
+    "Austria"
+  ],
+  "correctAnswer": 1,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 108,
+  "question": "¿Qué selección ganó el Mundial 1962?",
+  "options": [
+    "Chile",
+    "Checoslovaquia",
+    "Brasil",
+    "Yugoslavia"
+  ],
+  "correctAnswer": 2,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 109,
+  "question": "¿Qué selección ganó el Mundial 1974?",
+  "options": [
+    "Alemania Occidental",
+    "Países Bajos",
+    "Brasil",
+    "Argentina"
+  ],
+  "correctAnswer": 0,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 110,
+  "question": "¿Qué selección ganó el Mundial 1982?",
+  "options": [
+    "Italia",
+    "Alemania Occidental",
+    "Brasil",
+    "Francia"
+  ],
+  "correctAnswer": 0,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 111,
+  "question": "¿Qué selección ganó el Mundial 1990?",
+  "options": [
+    "Argentina",
+    "Alemania Occidental",
+    "Italia",
+    "Brasil"
+  ],
+  "correctAnswer": 1,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 112,
+  "question": "¿Qué selección ganó el Mundial 1994?",
+  "options": [
+    "Italia",
+    "Brasil",
+    "Alemania",
+    "Suecia"
+  ],
+  "correctAnswer": 1,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 113,
+  "question": "¿Qué selección ganó el Mundial 1998?",
+  "options": [
+    "Brasil",
+    "Francia",
+    "Croacia",
+    "Alemania"
+  ],
+  "correctAnswer": 1,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 114,
+  "question": "¿Qué selección ganó el Mundial 2006?",
+  "options": [
+    "Italia",
+    "Francia",
+    "Brasil",
+    "Alemania"
+  ],
+  "correctAnswer": 0,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 115,
+  "question": "¿Qué selección ganó el Mundial 2018?",
+  "options": [
+    "Croacia",
+    "Francia",
+    "Bélgica",
+    "Inglaterra"
+  ],
+  "correctAnswer": 1,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 116,
+  "question": "¿Qué país organizó el primer Mundial de la historia?",
+  "options": [
+    "Brasil",
+    "Uruguay",
+    "Italia",
+    "Argentina"
+  ],
+  "correctAnswer": 1,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 117,
+  "question": "¿En qué año se jugó el primer Mundial?",
+  "options": [
+    "1928",
+    "1930",
+    "1934",
+    "1936"
+  ],
+  "correctAnswer": 1,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 118,
+  "question": "¿Qué selección ganó el primer Mundial?",
+  "options": [
+    "Argentina",
+    "Uruguay",
+    "Brasil",
+    "Italia"
+  ],
+  "correctAnswer": 1,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 119,
+  "question": "¿Contra qué selección ganó Uruguay la final del Mundial 1930?",
+  "options": [
+    "Brasil",
+    "Italia",
+    "Argentina",
+    "España"
+  ],
+  "correctAnswer": 2,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 120,
+  "question": "¿Qué selección perdió la final del Mundial 1958 ante Brasil?",
+  "options": [
+    "Francia",
+    "Suecia",
+    "Alemania",
+    "Uruguay"
+  ],
+  "correctAnswer": 1,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 121,
+  "question": "¿Qué selección perdió la final del Mundial 1962?",
+  "options": [
+    "Brasil",
+    "Checoslovaquia",
+    "Chile",
+    "Alemania"
+  ],
+  "correctAnswer": 1,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 122,
+  "question": "¿Qué selección perdió la final del Mundial 1970?",
+  "options": [
+    "Italia",
+    "Alemania",
+    "Uruguay",
+    "Brasil"
+  ],
+  "correctAnswer": 0,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 123,
+  "question": "¿Qué selección perdió la final del Mundial 1982?",
+  "options": [
+    "Francia",
+    "Alemania Occidental",
+    "Brasil",
+    "Polonia"
+  ],
+  "correctAnswer": 1,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 124,
+  "question": "¿Qué selección perdió la final del Mundial 1994?",
+  "options": [
+    "Italia",
+    "Alemania",
+    "Suecia",
+    "Argentina"
+  ],
+  "correctAnswer": 0,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 125,
+  "question": "¿Qué selección perdió la final del Mundial 2002?",
+  "options": [
+    "Turquía",
+    "Corea del Sur",
+    "Alemania",
+    "Francia"
+  ],
+  "correctAnswer": 2,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 126,
+  "question": "¿Qué selección perdió la final del Mundial 2006?",
+  "options": [
+    "Alemania",
+    "Italia",
+    "Francia",
+    "Portugal"
+  ],
+  "correctAnswer": 2,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 127,
+  "question": "¿Qué selección perdió la final del Mundial 2018?",
+  "options": [
+    "Bélgica",
+    "Croacia",
+    "Inglaterra",
+    "Marruecos"
+  ],
+  "correctAnswer": 1,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 128,
+  "question": "¿Qué selección fue campeona mundial en 2010?",
+  "options": [
+    "Alemania",
+    "España",
+    "Países Bajos",
+    "Uruguay"
+  ],
+  "correctAnswer": 1,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 129,
+  "question": "¿Qué selección fue subcampeona del Mundial 2010?",
+  "options": [
+    "Alemania",
+    "Uruguay",
+    "Países Bajos",
+    "España"
+  ],
+  "correctAnswer": 2,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 130,
+  "question": "¿Qué selección eliminó a Argentina en el Mundial 2010?",
+  "options": [
+    "Alemania",
+    "España",
+    "Brasil",
+    "Países Bajos"
+  ],
+  "correctAnswer": 0,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 131,
+  "question": "¿Qué selección eliminó a Argentina en el Mundial 2018?",
+  "options": [
+    "Francia",
+    "Croacia",
+    "Alemania",
+    "Portugal"
+  ],
+  "correctAnswer": 0,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 132,
+  "question": "¿Qué selección eliminó a Argentina en cuartos del Mundial 2006?",
+  "options": [
+    "Brasil",
+    "Alemania",
+    "Italia",
+    "Francia"
+  ],
+  "correctAnswer": 1,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 133,
+  "question": "¿Qué selección eliminó a Argentina en cuartos del Mundial 2014?",
+  "options": [
+    "Bélgica",
+    "Países Bajos",
+    "Suiza",
+    "Alemania"
+  ],
+  "correctAnswer": 0,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 134,
+  "question": "¿Qué selección eliminó a Brasil en semifinales del Mundial 2014?",
+  "options": [
+    "Argentina",
+    "Alemania",
+    "Países Bajos",
+    "Francia"
+  ],
+  "correctAnswer": 1,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 135,
+  "question": "¿Con qué resultado Alemania venció a Brasil en 2014?",
+  "options": [
+    "5-0",
+    "6-1",
+    "7-1",
+    "7-0"
+  ],
+  "correctAnswer": 2,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 136,
+  "question": "¿Qué país ganó el Mundial 1966?",
+  "options": [
+    "Inglaterra",
+    "Alemania",
+    "Brasil",
+    "Italia"
+  ],
+  "correctAnswer": 0,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 137,
+  "question": "¿Qué selección nunca ganó un Mundial?",
+  "options": [
+    "Francia",
+    "Inglaterra",
+    "Países Bajos",
+    "España"
+  ],
+  "correctAnswer": 2,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 138,
+  "question": "¿Qué país ganó el Mundial 2002?",
+  "options": [
+    "Alemania",
+    "Brasil",
+    "Francia",
+    "Italia"
+  ],
+  "correctAnswer": 1,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 139,
+  "question": "¿Qué jugador argentino usó la 10 en Qatar 2022?",
+  "options": [
+    "Di María",
+    "Messi",
+    "Dybala",
+    "Julián Álvarez"
+  ],
+  "correctAnswer": 1,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 140,
+  "question": "¿Qué selección fue tercera en el Mundial 2022?",
+  "options": [
+    "Marruecos",
+    "Croacia",
+    "Países Bajos",
+    "Portugal"
+  ],
+  "correctAnswer": 1,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 141,
+  "question": "¿Qué selección terminó cuarta en el Mundial 2022?",
+  "options": [
+    "Francia",
+    "Bélgica",
+    "Marruecos",
+    "Portugal"
+  ],
+  "correctAnswer": 2,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 142,
+  "question": "¿Qué selección eliminó a Países Bajos en semifinales de 2014?",
+  "options": [
+    "Brasil",
+    "Alemania",
+    "Argentina",
+    "Francia"
+  ],
+  "correctAnswer": 2,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 143,
+  "question": "¿Qué arquero argentino atajó penales clave ante Países Bajos en 2014?",
+  "options": [
+    "Emiliano Martínez",
+    "Romero",
+    "Armani",
+    "Caballero"
+  ],
+  "correctAnswer": 1,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 144,
+  "question": "¿Qué arquero argentino atajó penales clave ante Países Bajos en 2022?",
+  "options": [
+    "Sergio Romero",
+    "Franco Armani",
+    "Emiliano Martínez",
+    "Rulli"
+  ],
+  "correctAnswer": 2,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 145,
+  "question": "¿Qué selección eliminó a Portugal en cuartos del Mundial 2022?",
+  "options": [
+    "Francia",
+    "Marruecos",
+    "España",
+    "Croacia"
+  ],
+  "correctAnswer": 1,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 146,
+  "question": "¿Qué selección eliminó a España en octavos del Mundial 2022?",
+  "options": [
+    "Marruecos",
+    "Japón",
+    "Croacia",
+    "Suiza"
+  ],
+  "correctAnswer": 0,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 147,
+  "question": "¿Qué selección eliminó a Japón en octavos del Mundial 2022?",
+  "options": [
+    "Croacia",
+    "Brasil",
+    "España",
+    "Marruecos"
+  ],
+  "correctAnswer": 0,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 148,
+  "question": "¿Qué selección eliminó a Brasil en el Mundial 2022?",
+  "options": [
+    "Croacia",
+    "Argentina",
+    "Francia",
+    "Países Bajos"
+  ],
+  "correctAnswer": 0,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 149,
+  "question": "¿Qué selección eliminó a Croacia en semifinales del Mundial 2022?",
+  "options": [
+    "Francia",
+    "Argentina",
+    "Brasil",
+    "Marruecos"
+  ],
+  "correctAnswer": 1,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 150,
+  "question": "¿Qué selección eliminó a Marruecos en semifinales del Mundial 2022?",
+  "options": [
+    "Francia",
+    "Argentina",
+    "Croacia",
+    "Portugal"
+  ],
+  "correctAnswer": 0,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 151,
+  "question": "¿Qué selección fue tercera en el Mundial 2014?",
+  "options": [
+    "Brasil",
+    "Países Bajos",
+    "Alemania",
+    "Argentina"
+  ],
+  "correctAnswer": 1,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 152,
+  "question": "¿Qué selección fue tercera en el Mundial 2018?",
+  "options": [
+    "Bélgica",
+    "Inglaterra",
+    "Croacia",
+    "Francia"
+  ],
+  "correctAnswer": 0,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 153,
+  "question": "¿Qué selección fue subcampeona del Mundial 1990?",
+  "options": [
+    "Italia",
+    "Alemania Occidental",
+    "Argentina",
+    "Brasil"
+  ],
+  "correctAnswer": 2,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 154,
+  "question": "¿Qué selección ganó el Mundial 1986?",
+  "options": [
+    "Alemania Occidental",
+    "Brasil",
+    "Argentina",
+    "Italia"
+  ],
+  "correctAnswer": 2,
+  "difficulty": "medium",
+  "category": "Mundial"
+},
+  {
+  "id": 155,
+  "question": "¿Qué selección ganó el Mundial 1978?",
+  "options": [
+    "Países Bajos",
+    "Argentina",
+    "Brasil",
+    "Alemania"
+  ],
+  "correctAnswer": 1,
+  "difficulty": "medium",
+  "category": "Mundial"
+}
 ];
