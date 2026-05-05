@@ -60,24 +60,7 @@ export const ScreenManager: React.FC = () => {
         )}
       </AnimatePresence>
 
-      {/* Global Footer Branding (Only on Trivia, hidden on mobile) */}
-      {currentScreen === 'TRIVIA' && (
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 20 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="hidden md:block fixed bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none"
-        >
-          <div className="bg-white/85 backdrop-blur-2xl px-10 py-3 rounded-[2rem] shadow-[0_0_50px_rgba(255,255,255,0.15)] border border-white/50 flex items-center justify-center">
-            <img 
-              src="/greenworking-soluciones-tecnologicas-logo-green-vf-1.png" 
-              alt="Greenworking Logo" 
-              className="h-7 md:h-10 object-contain drop-shadow-sm saturate-150"
-            />
-          </div>
-        </motion.div>
-      )}
+
 
       {/* Video Transition Overlay */}
       <AnimatePresence>
