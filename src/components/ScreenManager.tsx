@@ -94,7 +94,7 @@ export const ScreenManager: React.FC = () => {
               autoPlay 
               muted 
               playsInline
-              className="w-full max-w-2xl h-full md:h-full object-contain md:object-cover"
+              className="w-full h-full object-contain md:object-cover"
               onEnded={() => {
                 setShowTransition(false);
                 setParticipant(null);
