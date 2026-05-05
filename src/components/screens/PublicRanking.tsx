@@ -59,10 +59,23 @@ export const PublicRanking: React.FC = () => {
         <div className="absolute bottom-[-10%] right-[10%] w-[50%] h-[50%] rounded-full bg-world-cup-blue/30 blur-[120px]" />
       </div>
 
+      {/* Logo Corporativo */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="mt-4 md:mt-8 mb-2 bg-white/90 backdrop-blur-md px-8 py-3 rounded-full shadow-xl border border-white/40 z-10"
+      >
+        <img 
+          src="/greenworking-soluciones-tecnologicas-logo-green-vf-1.png" 
+          alt="Greenworking Logo" 
+          className="h-6 md:h-10 object-contain"
+        />
+      </motion.div>
+
       <motion.div 
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className="flex items-center justify-center gap-2 md:gap-4 mb-10 md:mb-16 mt-4 md:mt-8 w-full"
+        className="flex items-center justify-center gap-2 md:gap-4 mb-10 md:mb-12 mt-2 md:mt-4 w-full z-10"
       >
         <Trophy className="text-world-cup-gold gold-glow w-10 h-10 md:w-16 md:h-16 flex-shrink-0" />
         <h1 className="text-3xl sm:text-4xl md:text-6xl font-black text-glow text-center tracking-tight">TOP JUGADORES</h1>
