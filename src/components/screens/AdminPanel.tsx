@@ -115,7 +115,7 @@ export const AdminPanel: React.FC = () => {
   }
 
   return (
-    <div className="w-full min-h-screen p-4 md:p-8 flex flex-col">
+    <div className="w-full h-screen p-4 md:p-8 flex flex-col">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6 md:mb-8 bg-black/30 p-4 md:p-6 rounded-2xl border border-white/10 backdrop-blur-md">
         <div className="flex items-center gap-3 md:gap-4">
           <Database className="text-world-cup-gold w-8 h-8 md:w-10 md:h-10" />
@@ -140,8 +140,8 @@ export const AdminPanel: React.FC = () => {
         </div>
       </div>
 
-      <div className="glass-panel rounded-2xl overflow-hidden flex-1 flex flex-col">
-        <div className="overflow-x-auto flex-1">
+      <div className="glass-panel rounded-2xl overflow-hidden flex-1 flex flex-col min-h-0">
+        <div className="overflow-auto flex-1">
           <table className="w-full text-left border-collapse whitespace-nowrap md:whitespace-normal">
             <thead>
               <tr className="bg-white/10 border-b border-white/20">
