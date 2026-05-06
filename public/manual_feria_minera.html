@@ -107,6 +107,16 @@
     tr:nth-child(even) {
       background-color: #f8f9fa;
     }
+    
+    /* Capturas */
+    img.screenshot {
+      width: 100%;
+      max-width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      margin: 1.5rem 0;
+      border: 1px solid #ddd;
+    }
   </style>
 </head>
 <body>
@@ -123,6 +133,11 @@
 
   <h1 class="section-title">1. Introducción y Acceso a la Plataforma</h1>
   <p>La plataforma de Trivia ha sido diseñada como una herramienta interactiva para captar datos (Leads) de los asistentes a la Feria Minera, ofreciéndoles una experiencia lúdica gamificada.</p>
+
+  <div style="background-color: #f4f6f8; border-radius: 8px; padding: 1.5rem; text-align: center; margin: 2rem 0; border: 2px dashed var(--brand-blue);">
+    <h3 style="margin-top: 0; color: var(--brand-blue);">URL Oficial de Acceso</h3>
+    <a href="https://minegra-eight.vercel.app/" target="_blank" style="font-size: 1.5rem; font-weight: 800; color: var(--dark-bg); text-decoration: none;">https://minegra-eight.vercel.app/</a>
+  </div>
 
   <h3>Aplicación Instalable (PWA)</h3>
   <p>La aplicación cuenta con soporte PWA (Progressive Web App). Esto significa que <strong>no</strong> requiere ser descargada desde la App Store o Google Play.</p>
@@ -147,6 +162,8 @@
     <li><strong>Teléfono / WhatsApp</strong></li>
   </ul>
   <p><em>Nota: Todos los campos son obligatorios. Estos datos son los que luego se exportarán para gestión comercial.</em></p>
+  
+  <img src="./screenshot-home.png" alt="Pantalla de Inicio y Registro" class="screenshot" />
 
   <h2>Dinámica del Juego</h2>
   <p>Una vez registrado, el usuario accederá a la trivia:</p>
@@ -170,7 +187,9 @@
   <h1 class="section-title">3. Ranking Público (Dashboard)</h1>
   <p>El <strong>Ranking Global</strong> es una pantalla diseñada específicamente para ser proyectada en televisores grandes o pantallas LED en el stand.</p>
 
-  <p><strong>URL de acceso:</strong> <code>/ranking</code></p>
+  <p><strong>URL de acceso:</strong> <a href="https://minegra-eight.vercel.app/ranking" target="_blank">https://minegra-eight.vercel.app/ranking</a></p>
+
+  <img src="./screenshot-ranking.png" alt="Pantalla del Ranking Público" class="screenshot" />
 
   <h3>Características de la Pantalla:</h3>
   <ul>
@@ -184,7 +203,9 @@
   <h1 class="section-title">4. Panel de Administración y Leads</h1>
   <p>El panel de control es exclusivo para los administradores o encargados comerciales.</p>
 
-  <p><strong>URL de acceso:</strong> <code>/admin</code></p>
+  <p><strong>URL de acceso:</strong> <a href="https://minegra-eight.vercel.app/admin" target="_blank">https://minegra-eight.vercel.app/admin</a></p>
+
+  <img src="./screenshot-admin.png" alt="Panel de Administración" class="screenshot" />
 
   <h2>Ingreso al Sistema</h2>
   <p>Al acceder a la URL, se solicitará una contraseña de seguridad para proteger los datos personales de los participantes.</p>
