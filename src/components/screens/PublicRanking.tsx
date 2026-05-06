@@ -71,17 +71,17 @@ export const PublicRanking: React.FC = () => {
   ];
 
   return (
-    <div className="w-full min-h-screen p-4 sm:p-6 md:p-8 flex flex-col items-center overflow-x-hidden relative">
+    <div className="w-full h-screen p-2 sm:p-4 md:p-6 flex flex-col items-center overflow-hidden relative">
       {/* Elementos decorativos */}
       <div className="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
         <div className="absolute top-[-20%] left-[10%] w-[50%] h-[50%] rounded-full bg-brand-blue/20 blur-[120px]" />
         <div className="absolute bottom-[-10%] right-[10%] w-[50%] h-[50%] rounded-full bg-world-cup-gold/10 blur-[120px]" />
       </div>
 
-      <div className="w-full max-w-7xl mt-4 flex flex-col gap-6 relative z-10 flex-1">
+      <div className="w-full max-w-7xl mt-2 flex flex-col gap-4 relative z-10 h-full max-h-full">
         
         {/* ENCABEZADO INTEGRADO */}
-        <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-4 glass-panel rounded-2xl md:rounded-3xl p-6 md:px-10 md:py-6 relative overflow-hidden">
+        <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-2 glass-panel rounded-xl md:rounded-2xl p-4 md:px-8 md:py-4 relative overflow-hidden shrink-0">
            <div className="absolute inset-0 bg-gradient-to-r from-brand-blue/10 to-transparent"></div>
            <div className="flex items-center gap-4 relative z-10">
              <Trophy className="text-yellow-400 gold-glow w-10 h-10 md:w-14 md:h-14" />
@@ -97,7 +97,7 @@ export const PublicRanking: React.FC = () => {
         </div>
 
         {/* CONTENEDOR PRINCIPAL DASHBOARD */}
-        <div className="glass-panel rounded-3xl p-6 md:p-10 w-full flex flex-col xl:flex-row gap-10 md:gap-16 items-center xl:items-start justify-center min-h-[500px] relative overflow-hidden">
+        <div className="glass-panel rounded-2xl md:rounded-3xl p-4 md:p-8 w-full flex flex-col xl:flex-row gap-8 md:gap-12 items-center xl:items-start justify-center flex-1 relative overflow-hidden">
           
           <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent pointer-events-none"></div>
 
@@ -108,16 +108,16 @@ export const PublicRanking: React.FC = () => {
           ) : (
             <>
               {/* PODIO (TOP 3) */}
-              <div className="flex-1 flex items-end justify-center gap-3 sm:gap-6 md:gap-8 h-[350px] md:h-[450px] relative z-10 w-full xl:w-auto mt-auto mb-auto">
+              <div className="flex-1 flex items-end justify-center gap-2 sm:gap-4 md:gap-6 h-full min-h-[250px] md:min-h-[350px] relative z-10 w-full xl:w-auto pb-4">
                 {podiumOrder.map((player, index) => {
                   if (!player) return <div key={index} className="w-24 sm:w-28 md:w-44" />; 
                   
                   const position = index === 0 ? 2 : index === 1 ? 1 : 3;
-                  const heights = { 1: 'h-56 md:h-72', 2: 'h-44 md:h-56', 3: 'h-32 md:h-44' };
+                  const heights = { 1: 'h-48 md:h-64', 2: 'h-36 md:h-48', 3: 'h-24 md:h-36' };
                   const colors = { 
-                    1: 'from-yellow-400/80 to-yellow-600/60 border-yellow-300/80 shadow-[0_0_30px_rgba(250,204,21,0.4)]',
-                    2: 'from-gray-300/80 to-gray-500/60 border-gray-200/80 shadow-[0_0_25px_rgba(209,213,219,0.3)]',
-                    3: 'from-amber-600/80 to-amber-800/60 border-amber-500/80 shadow-[0_0_25px_rgba(217,119,6,0.3)]'
+                    1: 'from-yellow-400/90 to-yellow-600/80 border-yellow-300 shadow-[0_0_60px_rgba(250,204,21,0.8),inset_0_0_20px_rgba(250,204,21,0.5)]',
+                    2: 'from-gray-300/90 to-gray-500/80 border-gray-200 shadow-[0_0_50px_rgba(209,213,219,0.6),inset_0_0_20px_rgba(209,213,219,0.4)]',
+                    3: 'from-amber-500/90 to-amber-700/80 border-amber-400 shadow-[0_0_50px_rgba(217,119,6,0.6),inset_0_0_20px_rgba(217,119,6,0.4)]'
                   };
                   
                   return (
@@ -132,7 +132,7 @@ export const PublicRanking: React.FC = () => {
                       {/* Avatar / Nombre */}
                       <div className="mb-4 flex flex-col items-center relative transition-transform duration-300 group-hover:-translate-y-2">
                         <div className="absolute -inset-4 bg-white/5 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        {position === 1 && <Crown className="text-yellow-400 mb-2 drop-shadow-[0_0_15px_rgba(250,204,21,0.8)] w-12 h-12 md:w-16 md:h-16" />}
+                        {position === 1 && <Crown className="text-yellow-400 mb-2 drop-shadow-[0_0_25px_rgba(250,204,21,1)] w-12 h-12 md:w-16 md:h-16" />}
                         {position === 2 && <Medal className="text-gray-300 mb-2 drop-shadow-[0_0_10px_rgba(209,213,219,0.6)] w-10 h-10 md:w-12 md:h-12" />}
                         {position === 3 && <Medal className="text-amber-600 mb-2 drop-shadow-[0_0_10px_rgba(217,119,6,0.6)] w-10 h-10 md:w-12 md:h-12" />}
                         <div className="font-black text-xl md:text-3xl text-center truncate w-24 sm:w-28 md:w-44 text-glow">
@@ -162,7 +162,7 @@ export const PublicRanking: React.FC = () => {
                     <h3 className="text-xl md:text-2xl font-bold text-white/90">Siguientes Posiciones</h3>
                   </div>
                   
-                  <div className="flex flex-col gap-2.5">
+                  <div className="flex flex-col gap-2">
                     <AnimatePresence>
                       {topPlayers.slice(3).map((player, idx) => {
                         const pos = idx + 4;
@@ -173,7 +173,7 @@ export const PublicRanking: React.FC = () => {
                             initial={{ opacity: 0, x: 50 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.5 + (idx * 0.1), type: "spring" }}
-                            className="group flex items-center justify-between bg-black/30 p-3 md:p-4 rounded-xl border border-white/5 hover:border-brand-blue/30 hover:bg-white/10 transition-all duration-300 backdrop-blur-sm"
+                            className="group flex items-center justify-between bg-black/30 p-2 md:p-3 rounded-xl border border-white/5 hover:border-brand-blue/30 hover:bg-white/10 transition-all duration-300 backdrop-blur-sm"
                           >
                             <div className="flex items-center gap-4">
                               <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/5 border border-white/10 group-hover:border-brand-blue/50 flex items-center justify-center font-black text-lg md:text-xl text-white/70 group-hover:text-white transition-colors">
@@ -200,7 +200,7 @@ export const PublicRanking: React.FC = () => {
       </div>
 
       {/* FOOTER INTEGRADO CON LOGO */}
-      <div className="w-full mt-auto pt-8 pb-4 flex justify-center relative z-10">
+      <div className="w-full pt-2 pb-2 flex justify-center relative z-10 shrink-0 mt-auto">
         <div className="glass-panel px-6 md:px-8 py-2 md:py-3 rounded-full border border-white/10 flex items-center gap-3 md:gap-4 hover:bg-white/5 transition-colors">
           <span className="text-white/40 text-xs md:text-sm font-medium tracking-wider">POWERED BY</span>
           <img 
