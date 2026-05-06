@@ -15,7 +15,7 @@ export const PublicRanking: React.FC = () => {
         .select('*')
         .order('score', { ascending: false })
         .order('time_seconds', { ascending: true })
-        .limit(7);
+        .limit(10);
 
       if (error) throw error;
       
@@ -32,7 +32,9 @@ export const PublicRanking: React.FC = () => {
           { name: "Dibu Martínez", score: 4800, time_seconds: 48, email: "", phone: "", company: "Aston Villa" },
           { name: "Ángel Di María", score: 4500, time_seconds: 52, email: "", phone: "", company: "Benfica" },
           { name: "Julián Álvarez", score: 4200, time_seconds: 55, email: "", phone: "", company: "Man City" },
-          { name: "Enzo Fernández", score: 4000, time_seconds: 58, email: "", phone: "", company: "Chelsea" }
+          { name: "Enzo Fernández", score: 4000, time_seconds: 58, email: "", phone: "", company: "Chelsea" },
+          { name: "Alexis Mac Allister", score: 3900, time_seconds: 60, email: "", phone: "", company: "Liverpool" },
+          { name: "Cuti Romero", score: 3800, time_seconds: 62, email: "", phone: "", company: "Tottenham" }
       ]);
     } finally {
       setIsLoading(false);
@@ -69,120 +71,142 @@ export const PublicRanking: React.FC = () => {
   ];
 
   return (
-    <div className="w-full min-h-screen p-4 sm:p-8 pb-32 flex flex-col items-center overflow-x-hidden relative">
+    <div className="w-full min-h-screen p-4 sm:p-6 md:p-8 flex flex-col items-center overflow-x-hidden relative">
       {/* Elementos decorativos */}
       <div className="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
-        <div className="absolute top-[-20%] left-[20%] w-[40%] h-[40%] rounded-full bg-world-cup-gold/10 blur-[120px]" />
-        <div className="absolute bottom-[-10%] right-[10%] w-[50%] h-[50%] rounded-full bg-world-cup-blue/30 blur-[120px]" />
+        <div className="absolute top-[-20%] left-[10%] w-[50%] h-[50%] rounded-full bg-brand-blue/20 blur-[120px]" />
+        <div className="absolute bottom-[-10%] right-[10%] w-[50%] h-[50%] rounded-full bg-world-cup-gold/10 blur-[120px]" />
       </div>
 
-      {/* Indicador EN VIVO */}
-      <div className="absolute top-6 right-6 md:top-8 md:right-10 flex items-center gap-2 bg-black/40 backdrop-blur-md px-4 py-2 rounded-full border border-red-500/30">
-        <div className="w-3 h-3 rounded-full bg-red-500 animate-pulse shadow-[0_0_10px_rgba(239,68,68,0.8)]"></div>
-        <span className="text-red-500 font-bold tracking-widest text-sm md:text-base">EN VIVO</span>
-      </div>
+      <div className="w-full max-w-7xl mt-4 flex flex-col gap-6 relative z-10 flex-1">
+        
+        {/* ENCABEZADO INTEGRADO */}
+        <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-4 glass-panel rounded-2xl md:rounded-3xl p-6 md:px-10 md:py-6 relative overflow-hidden">
+           <div className="absolute inset-0 bg-gradient-to-r from-brand-blue/10 to-transparent"></div>
+           <div className="flex items-center gap-4 relative z-10">
+             <Trophy className="text-yellow-400 gold-glow w-10 h-10 md:w-14 md:h-14" />
+             <h1 className="text-3xl md:text-5xl font-black text-glow tracking-tight text-center sm:text-left">RANKING GLOBAL</h1>
+           </div>
+           
+           <div className="flex items-center gap-4 relative z-10">
+              <div className="flex items-center gap-2 bg-black/40 backdrop-blur-md px-4 py-2 rounded-full border border-red-500/30 shadow-[0_0_15px_rgba(239,68,68,0.2)]">
+                <div className="w-3 h-3 rounded-full bg-red-500 animate-pulse shadow-[0_0_10px_rgba(239,68,68,0.8)]"></div>
+                <span className="text-red-500 font-bold tracking-widest text-sm md:text-base">EN VIVO</span>
+              </div>
+           </div>
+        </div>
 
-      <motion.div 
-        initial={{ y: -50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        className="flex items-center justify-center gap-2 md:gap-4 mb-10 md:mb-12 mt-8 md:mt-12 w-full z-10"
-      >
-        <Trophy className="text-world-cup-gold gold-glow w-10 h-10 md:w-16 md:h-16 flex-shrink-0" />
-        <h1 className="text-3xl sm:text-4xl md:text-6xl font-black text-glow text-center tracking-tight">TOP JUGADORES</h1>
-        <Trophy className="text-world-cup-gold gold-glow w-10 h-10 md:w-16 md:h-16 flex-shrink-0" />
-      </motion.div>
-
-      {isLoading && topPlayers.length === 0 ? (
-        <div className="text-xl md:text-2xl text-blue-200 animate-pulse">Cargando ranking...</div>
-      ) : topPlayers.length === 0 ? (
-        <div className="text-xl md:text-2xl text-blue-200">Aún no hay jugadores registrados.</div>
-      ) : (
-        <div className="w-full max-w-6xl flex flex-col xl:flex-row gap-8 md:gap-12 items-center xl:items-start justify-center">
+        {/* CONTENEDOR PRINCIPAL DASHBOARD */}
+        <div className="glass-panel rounded-3xl p-6 md:p-10 w-full flex flex-col xl:flex-row gap-10 md:gap-16 items-center xl:items-start justify-center min-h-[500px] relative overflow-hidden">
           
-          {/* PODIO (TOP 3) */}
-          <div className="flex-1 flex items-end justify-center gap-2 sm:gap-4 md:gap-8 h-[300px] md:h-[400px]">
-            {podiumOrder.map((player, index) => {
-              if (!player) return <div key={index} className="w-24 md:w-40" />; 
-              
-              const position = index === 0 ? 2 : index === 1 ? 1 : 3;
-              const heights = { 1: 'h-48 md:h-64', 2: 'h-36 md:h-48', 3: 'h-24 md:h-36' };
-              const colors = { 
-                1: 'from-yellow-400 to-yellow-600 border-yellow-300 shadow-[0_0_20px_rgba(250,204,21,0.5)] md:shadow-[0_0_30px_rgba(250,204,21,0.5)]',
-                2: 'from-gray-300 to-gray-500 border-gray-200 shadow-[0_0_15px_rgba(209,213,219,0.4)] md:shadow-[0_0_20px_rgba(209,213,219,0.4)]',
-                3: 'from-amber-600 to-amber-800 border-amber-500 shadow-[0_0_15px_rgba(217,119,6,0.4)] md:shadow-[0_0_20px_rgba(217,119,6,0.4)]'
-              };
-              
-              return (
-                <motion.div 
-                  key={`podium-${position}`}
-                  layoutId={`player-${player.id || player.name}`}
-                  initial={{ opacity: 0, y: 100 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: position * 0.2, type: "spring" }}
-                  className="flex flex-col items-center"
-                >
-                  {/* Avatar / Nombre */}
-                  <div className="mb-2 md:mb-4 flex flex-col items-center">
-                    {position === 1 && <Crown className="text-yellow-400 mb-1 md:mb-2 drop-shadow-[0_0_10px_rgba(250,204,21,0.8)] w-8 h-8 md:w-12 md:h-12" />}
-                    {position === 2 && <Medal className="text-gray-300 mb-1 md:mb-2 w-7 h-7 md:w-10 md:h-10" />}
-                    {position === 3 && <Medal className="text-amber-600 mb-1 md:mb-2 w-7 h-7 md:w-10 md:h-10" />}
-                    <div className="font-bold text-base md:text-2xl text-center truncate w-24 sm:w-28 md:w-40 text-glow">
-                      {player.name.split(' ')[0]}
-                    </div>
-                    <div className="text-world-cup-gold font-black text-lg md:text-2xl mt-0 md:mt-1">{player.score} pts</div>
-                  </div>
-                  
-                  {/* Columna del podio */}
-                  <div className={`w-24 sm:w-28 md:w-40 rounded-t-lg md:rounded-t-xl bg-gradient-to-b border-t-2 md:border-t-4 ${colors[position as 1|2|3]} ${heights[position as 1|2|3]} flex justify-center items-start pt-3 md:pt-6 relative overflow-hidden`}>
-                    <div className="absolute inset-0 bg-white/10 backdrop-blur-sm" />
-                    <span className="text-3xl md:text-5xl font-black text-white/50 relative z-10">{position}</span>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
+          <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent pointer-events-none"></div>
 
-          {/* LISTA (4 al 10) */}
-          {topPlayers.length > 3 && (
-            <div className="w-full max-w-lg glass-panel rounded-2xl md:rounded-3xl p-4 md:p-6 flex flex-col gap-2 md:gap-3">
-              <h3 className="text-xl md:text-2xl font-bold text-world-cup-gold mb-1 md:mb-2 border-b border-white/10 pb-2 md:pb-4">Siguientes Posiciones</h3>
-              <AnimatePresence>
-                {topPlayers.slice(3).map((player, idx) => {
-                  const pos = idx + 4;
+          {isLoading && topPlayers.length === 0 ? (
+            <div className="absolute inset-0 flex items-center justify-center text-xl md:text-2xl text-blue-200 animate-pulse">Cargando ranking...</div>
+          ) : topPlayers.length === 0 ? (
+            <div className="absolute inset-0 flex items-center justify-center text-xl md:text-2xl text-blue-200">Aún no hay jugadores registrados.</div>
+          ) : (
+            <>
+              {/* PODIO (TOP 3) */}
+              <div className="flex-1 flex items-end justify-center gap-3 sm:gap-6 md:gap-8 h-[350px] md:h-[450px] relative z-10 w-full xl:w-auto mt-auto mb-auto">
+                {podiumOrder.map((player, index) => {
+                  if (!player) return <div key={index} className="w-24 sm:w-28 md:w-44" />; 
+                  
+                  const position = index === 0 ? 2 : index === 1 ? 1 : 3;
+                  const heights = { 1: 'h-56 md:h-72', 2: 'h-44 md:h-56', 3: 'h-32 md:h-44' };
+                  const colors = { 
+                    1: 'from-yellow-400/80 to-yellow-600/60 border-yellow-300/80 shadow-[0_0_30px_rgba(250,204,21,0.4)]',
+                    2: 'from-gray-300/80 to-gray-500/60 border-gray-200/80 shadow-[0_0_25px_rgba(209,213,219,0.3)]',
+                    3: 'from-amber-600/80 to-amber-800/60 border-amber-500/80 shadow-[0_0_25px_rgba(217,119,6,0.3)]'
+                  };
+                  
                   return (
                     <motion.div 
-                      key={`list-${player.id || player.name}`}
-                      layout
-                      initial={{ opacity: 0, x: 50 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      className="flex items-center justify-between bg-black/40 p-3 md:p-4 rounded-lg md:rounded-xl border border-white/5 hover:bg-white/5 transition-colors"
+                      key={`podium-${position}`}
+                      layoutId={`player-${player.id || player.name}`}
+                      initial={{ opacity: 0, y: 100 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: position * 0.2, type: "spring", stiffness: 100 }}
+                      className="flex flex-col items-center group cursor-default"
                     >
-                      <div className="flex items-center gap-3 md:gap-4">
-                        <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-white/10 flex items-center justify-center font-bold text-lg md:text-xl text-blue-200">
-                          {pos}
+                      {/* Avatar / Nombre */}
+                      <div className="mb-4 flex flex-col items-center relative transition-transform duration-300 group-hover:-translate-y-2">
+                        <div className="absolute -inset-4 bg-white/5 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        {position === 1 && <Crown className="text-yellow-400 mb-2 drop-shadow-[0_0_15px_rgba(250,204,21,0.8)] w-12 h-12 md:w-16 md:h-16" />}
+                        {position === 2 && <Medal className="text-gray-300 mb-2 drop-shadow-[0_0_10px_rgba(209,213,219,0.6)] w-10 h-10 md:w-12 md:h-12" />}
+                        {position === 3 && <Medal className="text-amber-600 mb-2 drop-shadow-[0_0_10px_rgba(217,119,6,0.6)] w-10 h-10 md:w-12 md:h-12" />}
+                        <div className="font-black text-xl md:text-3xl text-center truncate w-24 sm:w-28 md:w-44 text-glow">
+                          {player.name.split(' ')[0]}
                         </div>
-                        <div className="font-bold text-base md:text-xl truncate max-w-[120px] sm:max-w-[150px] md:max-w-[200px]">{player.name}</div>
+                        <div className="text-world-cup-gold font-bold text-lg md:text-2xl mt-1 bg-black/40 px-3 py-1 rounded-full border border-white/10 backdrop-blur-sm shadow-lg">
+                          {player.score} pts
+                        </div>
                       </div>
-                      <div className="text-right">
-                        <div className="font-black text-world-cup-gold text-base md:text-xl">{player.score} pts</div>
-                        <div className="text-xs md:text-sm text-gray-400">{player.time_seconds}s</div>
+                      
+                      {/* Columna del podio */}
+                      <div className={`w-24 sm:w-28 md:w-44 rounded-t-xl md:rounded-t-2xl bg-gradient-to-b border-t-2 md:border-t-4 backdrop-blur-md ${colors[position as 1|2|3]} ${heights[position as 1|2|3]} flex justify-center items-start pt-4 md:pt-6 relative overflow-hidden transition-all duration-300 group-hover:brightness-110`}>
+                        <div className="absolute inset-0 bg-gradient-to-b from-white/20 to-transparent" />
+                        <div className="absolute top-0 left-0 w-full h-[1px] bg-white/50" />
+                        <span className="text-4xl md:text-7xl font-black text-white/40 drop-shadow-md relative z-10">{position}</span>
                       </div>
                     </motion.div>
                   );
                 })}
-              </AnimatePresence>
-            </div>
+              </div>
+
+              {/* LISTA (4 al 10) */}
+              {topPlayers.length > 3 && (
+                <div className="w-full xl:w-[450px] flex flex-col gap-3 relative z-10">
+                  <div className="flex items-center gap-3 mb-2 px-2">
+                    <div className="w-1.5 h-6 bg-brand-blue rounded-full"></div>
+                    <h3 className="text-xl md:text-2xl font-bold text-white/90">Siguientes Posiciones</h3>
+                  </div>
+                  
+                  <div className="flex flex-col gap-2.5">
+                    <AnimatePresence>
+                      {topPlayers.slice(3).map((player, idx) => {
+                        const pos = idx + 4;
+                        return (
+                          <motion.div 
+                            key={`list-${player.id || player.name}`}
+                            layout
+                            initial={{ opacity: 0, x: 50 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.5 + (idx * 0.1), type: "spring" }}
+                            className="group flex items-center justify-between bg-black/30 p-3 md:p-4 rounded-xl border border-white/5 hover:border-brand-blue/30 hover:bg-white/10 transition-all duration-300 backdrop-blur-sm"
+                          >
+                            <div className="flex items-center gap-4">
+                              <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/5 border border-white/10 group-hover:border-brand-blue/50 flex items-center justify-center font-black text-lg md:text-xl text-white/70 group-hover:text-white transition-colors">
+                                {pos}
+                              </div>
+                              <div className="font-bold text-lg md:text-xl truncate max-w-[140px] sm:max-w-[200px] md:max-w-[180px] group-hover:text-glow transition-all">
+                                {player.name}
+                              </div>
+                            </div>
+                            <div className="text-right flex flex-col justify-center">
+                              <div className="font-black text-world-cup-gold text-lg md:text-xl leading-none">{player.score} pts</div>
+                              <div className="text-xs md:text-sm text-gray-400 mt-1">{player.time_seconds}s</div>
+                            </div>
+                          </motion.div>
+                        );
+                      })}
+                    </AnimatePresence>
+                  </div>
+                </div>
+              )}
+            </>
           )}
         </div>
-      )}
+      </div>
 
-      {/* Logo Corporativo Fijo en el Footer */}
-      <div className="fixed bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
-        <div className="bg-white/80 backdrop-blur-xl px-12 py-4 md:px-16 md:py-6 rounded-full shadow-[0_0_40px_rgba(255,255,255,0.2)] border border-white/50 flex items-center justify-center">
+      {/* FOOTER INTEGRADO CON LOGO */}
+      <div className="w-full mt-auto pt-8 pb-4 flex justify-center relative z-10">
+        <div className="glass-panel px-6 md:px-8 py-2 md:py-3 rounded-full border border-white/10 flex items-center gap-3 md:gap-4 hover:bg-white/5 transition-colors">
+          <span className="text-white/40 text-xs md:text-sm font-medium tracking-wider">POWERED BY</span>
           <img 
             src="/greenworking-soluciones-tecnologicas-logo-green-vf-1.png" 
             alt="Greenworking Logo" 
-            className="h-10 md:h-20 object-contain drop-shadow-md saturate-150"
+            className="h-6 md:h-8 object-contain brightness-0 invert opacity-80 transition-opacity hover:opacity-100"
           />
         </div>
       </div>
