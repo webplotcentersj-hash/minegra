@@ -108,12 +108,12 @@ export const PublicRanking: React.FC = () => {
           ) : (
             <>
               {/* PODIO (TOP 3) */}
-              <div className="flex-1 flex items-end justify-center gap-2 sm:gap-4 md:gap-6 h-full min-h-[250px] md:min-h-[350px] relative z-10 w-full xl:w-auto pb-4">
+              <div className="flex-1 flex items-end justify-center gap-2 sm:gap-4 md:gap-6 h-full min-h-[300px] md:min-h-[400px] relative z-10 w-full xl:w-auto pb-4">
                 {podiumOrder.map((player, index) => {
                   if (!player) return <div key={index} className="w-24 sm:w-28 md:w-44" />; 
                   
                   const position = index === 0 ? 2 : index === 1 ? 1 : 3;
-                  const heights = { 1: 'h-48 md:h-64', 2: 'h-36 md:h-48', 3: 'h-24 md:h-36' };
+                  const heights = { 1: 'h-64 md:h-80', 2: 'h-48 md:h-60', 3: 'h-32 md:h-44' };
                   const colors = { 
                     1: 'from-yellow-400/90 to-yellow-600/80 border-yellow-300 shadow-[0_0_60px_rgba(250,204,21,0.8),inset_0_0_20px_rgba(250,204,21,0.5)]',
                     2: 'from-gray-300/90 to-gray-500/80 border-gray-200 shadow-[0_0_50px_rgba(209,213,219,0.6),inset_0_0_20px_rgba(209,213,219,0.4)]',
