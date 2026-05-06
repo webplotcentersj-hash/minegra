@@ -201,12 +201,11 @@ export const PublicRanking: React.FC = () => {
 
       {/* FOOTER INTEGRADO CON LOGO */}
       <div className="w-full pt-2 pb-2 flex justify-center relative z-10 shrink-0 mt-auto">
-        <div className="glass-panel px-6 md:px-8 py-2 md:py-3 rounded-full border border-white/10 flex items-center gap-3 md:gap-4 hover:bg-white/5 transition-colors">
-          <span className="text-white/40 text-xs md:text-sm font-medium tracking-wider">POWERED BY</span>
+        <div className="glass-panel px-8 md:px-12 py-3 md:py-4 rounded-full border border-white/10 flex items-center hover:bg-white/5 transition-colors">
           <img 
             src="/greenworking-soluciones-tecnologicas-logo-green-vf-1.png" 
             alt="Greenworking Logo" 
-            className="h-6 md:h-8 object-contain brightness-0 invert opacity-80 transition-opacity hover:opacity-100"
+            className="h-10 md:h-14 object-contain brightness-0 invert opacity-90 transition-opacity hover:opacity-100"
           />
         </div>
       </div>
