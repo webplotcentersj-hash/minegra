@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Lock, Download, RefreshCcw, Database } from 'lucide-react';
-import { supabase } from '../../lib/supabase';
-import type { Participant } from '../../lib/supabase';
+import { supabase, getCurrentSession, resetGameSession, SYSTEM_EMAIL } from '../../lib/supabase';
+import type { Participant, GameSession } from '../../lib/supabase';
 
 export const AdminPanel: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState('');
   const [participants, setParticipants] = useState<Participant[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [currentSession, setCurrentSession] = useState<GameSession | null>(null);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,11 +24,21 @@ export const AdminPanel: React.FC = () => {
   const fetchData = async () => {
     setIsLoading(true);
     try {
-      const { data, error } = await supabase
+      const session = await getCurrentSession();
+      setCurrentSession(session);
+
+      let query = supabase
         .from('participants')
         .select('*')
+        .neq('email', SYSTEM_EMAIL)
         .order('score', { ascending: false })
         .order('time_seconds', { ascending: true });
+
+      if (session) {
+        query = query.gt('created_at', session.created_at);
+      }
+
+      const { data, error } = await query;
 
       if (error) throw error;
       
@@ -45,6 +56,23 @@ export const AdminPanel: React.FC = () => {
       }
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleReset = async () => {
+    const sessionName = window.prompt('Ingrese el nombre para la nueva sesión (ej. Día 2, Turno Tarde):');
+    if (!sessionName) return;
+
+    if (window.confirm(`¿Seguro que deseas reiniciar el ranking y comenzar la sesión "${sessionName}"? Los datos anteriores no se borrarán.`)) {
+      setIsLoading(true);
+      try {
+        await resetGameSession(sessionName);
+        await fetchData();
+      } catch (error) {
+        console.error('Error reset session:', error);
+        alert('Hubo un error al reiniciar la sesión');
+        setIsLoading(false);
+      }
     }
   };
 
@@ -116,12 +144,27 @@ export const AdminPanel: React.FC = () => {
 
   return (
     <div className="w-full h-screen p-4 md:p-8 flex flex-col">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6 md:mb-8 bg-black/30 p-4 md:p-6 rounded-2xl border border-white/10 backdrop-blur-md">
-        <div className="flex items-center gap-3 md:gap-4">
-          <Database className="text-world-cup-gold w-8 h-8 md:w-10 md:h-10" />
-          <h1 className="text-xl md:text-3xl font-bold text-white text-glow">Panel de Administración - Leads</h1>
+      <div className={`flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6 md:mb-8 p-4 md:p-6 rounded-2xl border backdrop-blur-md transition-colors ${currentSession ? 'bg-world-cup-blue/20 border-world-cup-blue/40 shadow-[0_0_20px_rgba(24,131,171,0.2)]' : 'bg-black/30 border-white/10'}`}>
+        <div className="flex flex-col gap-1">
+          <div className="flex items-center gap-3 md:gap-4">
+            <Database className="text-world-cup-gold w-8 h-8 md:w-10 md:h-10" />
+            <h1 className="text-xl md:text-3xl font-bold text-white text-glow">Panel de Administración</h1>
+          </div>
+          {currentSession && (
+            <div className="text-world-cup-green font-bold text-lg md:text-xl ml-11 md:ml-14">
+              Sesión Activa: <span className="text-white">{currentSession.name}</span>
+            </div>
+          )}
         </div>
-        <div className="flex flex-col sm:flex-row gap-3 md:gap-4 w-full md:w-auto">
+        <div className="flex flex-wrap sm:flex-nowrap gap-3 md:gap-4 w-full md:w-auto">
+          <button 
+            onClick={handleReset}
+            disabled={isLoading}
+            className="flex flex-1 sm:flex-none justify-center items-center gap-2 bg-red-500/20 hover:bg-red-500/40 border border-red-500/50 text-white px-4 md:px-6 py-3 rounded-xl transition-colors disabled:opacity-50"
+            title="Borrar ranking público e iniciar nueva sesión"
+          >
+            Nueva Sesión
+          </button>
           <button 
             onClick={fetchData}
             disabled={isLoading}

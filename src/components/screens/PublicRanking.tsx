@@ -1,21 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Trophy, Medal, Crown } from 'lucide-react';
-import { supabase } from '../../lib/supabase';
-import type { Participant } from '../../lib/supabase';
+import { supabase, getCurrentSession, SYSTEM_EMAIL } from '../../lib/supabase';
+import type { Participant, GameSession } from '../../lib/supabase';
 
 export const PublicRanking: React.FC = () => {
   const [topPlayers, setTopPlayers] = useState<Participant[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [currentSession, setCurrentSession] = useState<GameSession | null>(null);
 
   const fetchRanking = async () => {
     try {
-      const { data, error } = await supabase
+      const session = await getCurrentSession();
+      setCurrentSession(session);
+
+      let query = supabase
         .from('participants')
         .select('*')
+        .neq('email', SYSTEM_EMAIL)
         .order('score', { ascending: false })
         .order('time_seconds', { ascending: true })
         .limit(10);
+
+      if (session) {
+        query = query.gt('created_at', session.created_at);
+      }
+
+      const { data, error } = await query;
 
       if (error) throw error;
       
@@ -81,11 +92,18 @@ export const PublicRanking: React.FC = () => {
       <div className="w-full max-w-7xl mt-2 flex flex-col gap-4 relative z-10 h-full max-h-full">
         
         {/* ENCABEZADO INTEGRADO */}
-        <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-2 glass-panel rounded-xl md:rounded-2xl p-4 md:px-8 md:py-4 relative overflow-hidden shrink-0">
+        <div className={`w-full flex flex-col sm:flex-row items-center justify-between gap-2 glass-panel rounded-xl md:rounded-2xl p-4 md:px-8 md:py-4 relative overflow-hidden shrink-0 transition-all ${currentSession ? 'border-brand-blue/50 shadow-[0_0_20px_rgba(24,131,171,0.2)]' : ''}`}>
            <div className="absolute inset-0 bg-gradient-to-r from-brand-blue/10 to-transparent"></div>
            <div className="flex items-center gap-4 relative z-10">
              <Trophy className="text-yellow-400 gold-glow w-10 h-10 md:w-14 md:h-14" />
-             <h1 className="text-3xl md:text-5xl font-black text-glow tracking-tight text-center sm:text-left">RANKING GLOBAL</h1>
+             <div className="flex flex-col">
+               <h1 className="text-3xl md:text-5xl font-black text-glow tracking-tight text-center sm:text-left">RANKING GLOBAL</h1>
+               {currentSession && (
+                 <span className="text-world-cup-green font-bold text-lg md:text-xl drop-shadow-md">
+                   {currentSession.name}
+                 </span>
+               )}
+             </div>
            </div>
            
            <div className="flex items-center gap-4 relative z-10">
